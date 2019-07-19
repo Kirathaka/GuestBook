@@ -13,4 +13,4 @@ INSERT INTO `user` VALUES (1,'$2a$10$HwsVbtOt9kA2m30j31.Cb.StYPftglZNy3nc7yYTJHR
 
 INSERT INTO `user_role` VALUES (1,1),(2,2),(3,2),(4,2);
 
-INSERT INTO `entry` VALUES (1,'sample image location1','Great Application! Thanks.',2),(0,'sample image location2','WOW! This is breaking the internet :)',3),(0,'sample image location3','Thanks for this gift, developer.',4);
+INSERT INTO `entry` VALUES (1,'http://someURL.com/someUrl/1.jpg','Great Application! Thanks.',2),(0,'http://someURL.com/someUrl/2.jpg','WOW! This is breaking the internet :)',3),(0,'http://someURL.com/someUrl/3.jpg','Thanks for this gift, developer.',4);
