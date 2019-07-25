@@ -8,7 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.ValidationException;
 
 @Entity
 @Table(name = "entry")
@@ -71,6 +74,16 @@ public class Entry {
 
 	public void setApproved(boolean approved) {
 		this.approved = approved;
+	}
+
+	@PrePersist
+	@PreUpdate
+	private void validate() {
+		if (textMessage.length() == 0 && imageLocation.length() == 0) {
+			throw new ValidationException();
+		} else if (textMessage.length() > 0 && imageLocation.length() > 0) {
+			throw new ValidationException();
+		}
 	}
 
 }

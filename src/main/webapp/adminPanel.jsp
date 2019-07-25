@@ -38,9 +38,9 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="row">#ID</th>
+					<th scope="row">Name</th>
 					<th scope="row">Text Message</th>
-					<th scope="row">Image Location</th>
+					<th scope="row">Image</th>
 					<th scope="row">Approve</th>
 					<th scope="row">Update</th>
 					<th scope="row">Delete</th>
@@ -49,9 +49,10 @@
 			<tbody>
 				<c:forEach items="${entryList }" var="entry">
 					<tr>
-						<td>${entry.id }</td>
-						<td>${entry.textMessage }</td>
-						<td>${entry.imageLocation }</td>
+						<td>${entry.user.username }</td>
+						<td>${entry.textMessage}</td>
+						<%-- <td>${entry.imageLocation }</td> --%>
+						<td><img id="imagePreview" alt="your image" src="${entry.imageLocation}" width="100" height="100" /></td>
 
 						<td><c:choose>
 								<c:when test="${entry.approved}">

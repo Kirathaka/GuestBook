@@ -22,10 +22,8 @@
 		<div class="row">
 			<div class="col-md-8" style="background-color: lavender;">
 				<div class="jumbotron">
-					<h1>GuestBook Application</h1>
-					<p>GuestBook is the most popular web application where Guest
-						Users can Login and Add Text/Image Messages and Admin user can
-						view/edit/delete those messages .</p>
+					<h1>Guest Book</h1>
+					<p>This is a logging system that allows visitors of the website to leave a comment (Text/Image) about the website or its subject. </p>
 				</div>
 			</div>
 
