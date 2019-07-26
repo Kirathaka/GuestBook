@@ -48,23 +48,23 @@ public class FileStorageServiceImpl implements FileStorageService{
 		if (!(file.getOriginalFilename().endsWith(AppConstants.PNG_FILE_FORMAT) || file.getOriginalFilename().endsWith(AppConstants.JPEG_FILE_FORMAT) || file.getOriginalFilename().endsWith(AppConstants.JPG_FILE_FORMAT)))
 			throw new FileStorageException(AppConstants.INVALID_FILE_FORMAT);
 		
-		File f = new File(tempStorageLocation+file.getOriginalFilename());
+		File tempFile = new File(tempStorageLocation+file.getOriginalFilename());
 		
-		 f.createNewFile();
-			FileOutputStream fout = new FileOutputStream(f);
+		tempFile.createNewFile();
+			FileOutputStream fout = new FileOutputStream(tempFile);
 			fout.write(file.getBytes());
 			fout.close();
-			 BufferedImage image = ImageIO.read(f);
+			 BufferedImage image = ImageIO.read(tempFile);
 		   int height = image.getHeight();
 		   int width = image.getWidth();
 		   if(width > AppConstants.FILE_DIMENSIONS_HEIGHT || height > AppConstants.FILE_DIMENSIONS_WIDTH) {
-			   if(f.exists())
-				   f.delete();
+			   if(tempFile.exists())
+				   tempFile.delete();
 			   throw new FileStorageException(AppConstants.INVALID_FILE_DIMENSIONS);
 		   }
 		
-		   if(f.exists())
-			   f.delete();
+		   if(tempFile.exists())
+			   tempFile.delete();
 		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		try {

@@ -11,9 +11,6 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<%-- <link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet"> --%>
-<%-- <script src="${contextPath}/resources/js/bootstrap.min.js"></script> --%>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
@@ -135,13 +132,15 @@
 			</div>
 			<div class="form-group imageBlock ${error ? 'has-error' : ''}">
 
-				<img id="imagePreview" alt="Browse your image to see the preview here"
-					width="100" height="100" />
+				<img id="imagePreview"
+					alt="Browse your image to see the preview here" width="100"
+					height="100" />
 				<!-- <input type="file" class="form-control"
 					id="imageInput" path="imageLocation" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input> -->
 				<input type="file" class="form-control" id="imageInput" name="pic"
 					onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input>
-				<small class="text-muted">Allowed formats: jpg/jpeg/png. Allowd Dimensions: 300X300. Allowed Max size: 300MB</small>
+				<small class="text-muted">Allowed formats: jpg/jpeg/png.
+					Allowd Dimensions: 300X300. Allowed Max size: 300MB</small>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>

@@ -10,8 +10,8 @@
 <meta charset="utf-8">
 <title>Log in with your account</title>
 
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 
@@ -23,7 +23,9 @@
 			<div class="col-md-8" style="background-color: lavender;">
 				<div class="jumbotron">
 					<h1>Guest Book</h1>
-					<p>This is a logging system that allows visitors of the website to leave a Feedback (either in text/image format) about the website or its subject. </p>
+					<p>This is a logging system that allows visitors of the WebSite
+						to leave a Feedback (either in text/image format) about the
+						WebSite or its subject.</p>
 				</div>
 			</div>
 

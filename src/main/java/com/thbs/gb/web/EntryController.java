@@ -34,7 +34,6 @@ import com.thbs.gb.service.FileStorageService;
 import com.thbs.gb.service.UserService;
 import com.thbs.gb.utils.AppConstants;
 import com.thbs.gb.validator.EntryValidator;
-import com.thbs.gb.validator.UserValidator;
 
 @Controller
 public class EntryController {

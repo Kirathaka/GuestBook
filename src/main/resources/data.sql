@@ -1,14 +1,3 @@
---LOCK TABLES `role` WRITE;
---INSERT INTO `role` VALUES (1,'ROLE_ADMIN');
---INSERT INTO `role` VALUES (2,'ROLE_USER');
---UNLOCK TABLES;
-
---This needs to be created manually
---create database GuestBook;
-
---insert into user (username,password) values ('admin','$2a$10$HwsVbtOt9kA2m30j31.Cb.StYPftglZNy3nc7yYTJHRtmW9ePCKP6');
-
---insert into user_role values('1','1');
 
 INSERT INTO `role` VALUES (1,'ROLE_ADMIN'),(2,'ROLE_USER');
 

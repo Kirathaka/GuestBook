@@ -9,8 +9,8 @@
 <meta charset="utf-8">
 <title>Create an account</title>
 
-<link href="${contextPath}/resources/css/bootstrap.min.css"
-	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
 

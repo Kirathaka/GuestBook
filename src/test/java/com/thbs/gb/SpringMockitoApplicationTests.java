@@ -22,7 +22,6 @@ import com.thbs.gb.service.EntryService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-/* @WebMvcTest(EntryController.class) */
 public class SpringMockitoApplicationTests {
 
 	@Autowired
@@ -33,10 +32,6 @@ public class SpringMockitoApplicationTests {
 
 	@MockBean
 	private UserRepository mockedUserRepository;
-
-	/*
-	 * @Autowired private MockMvc mockMvc;
-	 */
 
 	@Test
 	public void getAllEntriesTest() {
@@ -63,17 +58,6 @@ public class SpringMockitoApplicationTests {
 		verify(mockedEntryRepository, times(1)).deleteById(id);
 
 	}
-
-	/*
-	 * @Test public void getEntryTest() {
-	 * 
-	 * Long id = 1L;
-	 * 
-	 * mockedEntryService.getEntry(id);
-	 * verify(mockedEntryRepository,times(1)).findById(id).get();
-	 * 
-	 * }
-	 */
 
 	@Test
 	public void saveOrUpdateTest() {

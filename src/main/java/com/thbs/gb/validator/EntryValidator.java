@@ -53,7 +53,7 @@ public class EntryValidator implements Validator {
 						|| multipartFile.getOriginalFilename().endsWith(AppConstants.JPG_FILE_FORMAT))) {
 					errors.reject("invalid.file");
 				} else {
-					
+
 					if (multipartFile.getSize() > AppConstants.MAX_FILE_SIZE_IN_BYTES) {
 						errors.reject("invalid.file.size");
 					}

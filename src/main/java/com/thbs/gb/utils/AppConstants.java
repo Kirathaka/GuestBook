@@ -8,12 +8,11 @@ public class AppConstants {
 	public static final String DEFAULT_CONTENT_TYPE = "application/octet-stream";
 	public static final String FILE_DOWNLOAD_HTTP_HEADER = "attachment; filename=\"%s\"";
 	public static final String FILE_PROPERTIES_PREFIX = "file";
-	public static final String FILE_STORAGE_EXCEPTION_PATH_NOT_FOUND = "Could not create the directory where the uploaded files will be stored";
+	public static final String FILE_STORAGE_EXCEPTION_PATH_NOT_FOUND = "Could not create the directory to store the uploaded files";
 	public static final String INVALID_FILE_PATH_NAME = "Sorry! Filename contains invalid path sequence";
 	public static final String FILE_NOT_FOUND = "File not found ";
 	public static final String FILE_STORAGE_EXCEPTION = "Could not store file %s !! Please try again!";
 	public static final CharSequence INVALID_FILE_DELIMITER = "..";
-	//public static final String TEMP_DIR = "C://TMP//";
 	public static final String TEMP_DIR = "./uploads/tmp/";
 	public static final int FILE_DIMENSIONS_HEIGHT = 300;
 	public static final int FILE_DIMENSIONS_WIDTH = 300;
