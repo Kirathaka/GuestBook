@@ -14,7 +14,8 @@
 <%-- <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet"> --%>
 <%-- <script src="${contextPath}/resources/js/bootstrap.min.js"></script> --%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
@@ -27,21 +28,18 @@
 		var imageURL = "<c:out value="${entryForm.imageLocation}"/>" ;
 		
 		  if(${newEntry}) {
-			$('#imageInput').hide();
-			$('#imagePreview').hide();
+			$('.imageBlock').hide();
 		   }else{
 			   if(isTextEntry != ""){
 				   $("#OptradioInputText").prop("checked", true);
-				   $('#imageInput').hide();
-				   $("imagePreview").attr("src","");
-				   $('#imagePreview').hide();
-				   $('#textInput').show();
+				   $('.imageBlock').hide();
+				   $("#imagePreview").attr("src","");
+				   $('.textBlock').show();
 			   }else{
 				   $("#OptradioInputImage").prop("checked", true);
-				   $('#imageInput').show();
-				   $('#imagePreview').show();
+				   $('.imageBlock').show();
 				   $("#imagePreview").attr("src",imageURL);
-				   $('#textInput').hide();
+				   $('.textBlock').hide();
 				   
 			   }
 		   }
@@ -53,14 +51,12 @@
 								'input[name=optradio]:checked',
 								'#entryForm').val();
 						if (optionSelected == 1) {
-							$('#imageInput').hide();
-							$('#imagePreview').hide();
-							$('#textInput').show();
+							$('.imageBlock').hide();
+							$('.textBlock').show();
 							$("#imageInput").val(null);
 						} else if (optionSelected == 2) {
-							$('#textInput').hide();
-							$('#imageInput').show();
-							$('#imagePreview').show();
+							$('.textBlock').hide();
+							$('.imageBlock').show();
 							$("#textInput").val(null);
 						}
 			});
@@ -113,10 +109,12 @@
 			action="${actionUrl }" enctype="multipart/form-data" class="form"
 			id="entryForm">
 			<div>
-			<span class="error info alert-info" delimiter="&lt;p/&gt;" style="bottom: 10px;" >${message}</span>
+				<span class="error info alert-info" delimiter="&lt;p/&gt;"
+					style="bottom: 10px;">${message}</span>
 			</div>
 
-			<form:errors cssClass="error alert alert-warning" delimiter="&lt;p/&gt;" style="bottom: 10px;" />
+			<form:errors cssClass="error alert alert-warning"
+				delimiter="&lt;p/&gt;" style="bottom: 10px;" />
 
 			<h2>Please select the type of feedback</h2>
 
@@ -128,18 +126,22 @@
 					id="OptradioInputImage" value="2" />Image Feedback</label>
 			</div>
 
-			<div class="form-group ${error ? 'has-error' : ''}">
+			<div class="form-group textBlock ${error ? 'has-error' : ''}">
 				<form:input type="text" path="textMessage" class="form-control"
 					id="textInput" placeholder="Your Text goes here"></form:input>
+				<small class="text-muted">Character length should be between
+					2 to 144.</small>
 				<form:errors path="textMessage"></form:errors>
 			</div>
-			<div class="form-group ${error ? 'has-error' : ''}">
+			<div class="form-group imageBlock ${error ? 'has-error' : ''}">
 
-				<img id="imagePreview" alt="Browse your image the preview here" width="100" height="100" />
+				<img id="imagePreview" alt="Browse your image to see the preview here"
+					width="100" height="100" />
 				<!-- <input type="file" class="form-control"
 					id="imageInput" path="imageLocation" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input> -->
 				<input type="file" class="form-control" id="imageInput" name="pic"
 					onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input>
+				<small class="text-muted">Allowed formats: jpg/jpeg/png. Allowd Dimensions: 300X300. Allowed Max size: 300MB</small>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>

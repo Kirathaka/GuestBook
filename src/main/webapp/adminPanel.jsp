@@ -9,14 +9,20 @@
 <title>Create an account</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link href="${contextPath}/resources/css/bootstrap.min.css"
+<%-- <link href="${contextPath}/resources/css/bootstrap.min.css"
 	rel="stylesheet">
-<script src="${contextPath}/resources/js/bootstrap.min.js"></script>
+<script src="${contextPath}/resources/js/bootstrap.min.js"></script> --%>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<div class="container">
 
-		<div class="page-header float-right" style="float:right">
+		<div class="page-header float-right" style="float: right">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}"
@@ -39,19 +45,40 @@
 			<thead>
 				<tr>
 					<th scope="row">User</th>
-					<th scope="row">Text Message</th>
-					<th scope="row">Image</th>
-					<th scope="row">Approve</th>
-					<th scope="row">Update</th>
-					<th scope="row">Delete</th>
+					<!-- <th scope="row">Text Message</th>
+					<th scope="row">Image</th> -->
+					<th scope="row" style="width: 50%">Feedback</th>
+					<th scope="row"></th>
+					<th scope="row"></th>
+					<th scope="row"></th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${entryList }" var="entry">
 					<tr>
 						<td>${entry.user.username }</td>
-						<td>${entry.textMessage}</td>
-						<td><img id="imagePreview" alt="your image" src="${entry.imageLocation}" width="100" height="100" /></td>
+						<%-- <td>${entry.textMessage}</td>
+						<td><img id="imagePreview" alt="your image" src="${entry.imageLocation}" width="100" height="100" /></td> --%>
+
+
+
+
+						<td>
+								 <c:if test="${not empty entry.textMessage}" >
+									${entry.textMessage}
+								</c:if>
+								<c:if test="${empty entry.textMessage}" >
+									<img id="imagePreview" alt="your image"
+										src="${entry.imageLocation}" width="100" height="100" />
+								</c:if>
+								
+							</td>
+
+
+
+
+
+
 
 						<td><c:choose>
 								<c:when test="${entry.approved}">

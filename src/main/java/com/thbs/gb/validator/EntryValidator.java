@@ -30,7 +30,7 @@ public class EntryValidator implements Validator {
 			Entry entry = (Entry) o;
 
 			if ((entry.getTextMessage().length() != 0)
-					&& (entry.getTextMessage().length() < 2 || entry.getTextMessage().length() > 50)) {
+					&& (entry.getTextMessage().length() < 2 || entry.getTextMessage().length() > 144)) {
 
 				errors.reject("Size.entryForm.entry.textMessage");
 			}
