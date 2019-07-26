@@ -23,7 +23,7 @@
 			<div class="col-md-8" style="background-color: lavender;">
 				<div class="jumbotron">
 					<h1>Guest Book</h1>
-					<p>This is a logging system that allows visitors of the website to leave a comment (Text/Image) about the website or its subject. </p>
+					<p>This is a logging system that allows visitors of the website to leave a Feedback (either in text/image format) about the website or its subject. </p>
 				</div>
 			</div>
 

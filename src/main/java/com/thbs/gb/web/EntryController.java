@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -32,6 +33,8 @@ import com.thbs.gb.service.EntryService;
 import com.thbs.gb.service.FileStorageService;
 import com.thbs.gb.service.UserService;
 import com.thbs.gb.utils.AppConstants;
+import com.thbs.gb.validator.EntryValidator;
+import com.thbs.gb.validator.UserValidator;
 
 @Controller
 public class EntryController {
@@ -44,6 +47,9 @@ public class EntryController {
 
 	@Autowired
 	FileStorageService fileStorageService;
+
+	@Autowired
+	private EntryValidator entryValidator;
 
 	@GetMapping({ "/", "/entry" })
 	public ModelAndView addEntry() {
@@ -67,10 +73,23 @@ public class EntryController {
 	}
 
 	@RequestMapping(value = "/entry", method = RequestMethod.POST)
-	public ModelAndView save(@ModelAttribute("entryForm") Entry entry, @RequestParam("pic") MultipartFile file)
-			throws IOException {
+	public ModelAndView save(@ModelAttribute("entryForm") Entry entry, @RequestParam("pic") MultipartFile file,
+			BindingResult bindingResult) throws IOException {
 
 		ModelAndView model = new ModelAndView();
+
+		entryValidator.validate(entry, bindingResult);
+
+		if (entry.getTextMessage().length() == 0) {
+			entryValidator.validate(file, bindingResult);
+		}
+
+		if (bindingResult.hasErrors()) {
+			model.addObject("entryForm", entry);
+			model.setViewName("entryForm");
+			model.addObject("newEntry", true);
+			return model;
+		}
 
 		String currentUsername = getCurrentUserId();
 		User user = userService.findByUsername(currentUsername);
@@ -78,8 +97,7 @@ public class EntryController {
 		if (entryObj != null) {
 			model.addObject("entryForm", entryObj);
 			model.addObject("newEntry", false);
-			model.addObject("message",
-					AppConstants.MULTIPLE_ENTRY_ERROR_MESSAGE);
+			model.addObject("message", AppConstants.MULTIPLE_ENTRY_ERROR_MESSAGE);
 		} else {
 			entry.setUser(user);
 
@@ -101,7 +119,7 @@ public class EntryController {
 		model.setViewName("entryForm");
 		return model;
 	}
-	
+
 	@RequestMapping(value = AppConstants.DOWNLOAD_URI, method = RequestMethod.GET)
 	public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, HttpServletRequest request) {
 		Resource resource = fileStorageService.loadFileAsResource(fileName);
@@ -152,11 +170,27 @@ public class EntryController {
 	}
 
 	@RequestMapping(value = "/entry/updateEntry/{id}", method = RequestMethod.POST)
-	public ModelAndView updateAndSaveEntry(@PathVariable long id, @ModelAttribute("articleForm") Entry entry, @RequestParam("pic") MultipartFile file) throws IOException {
+	public ModelAndView updateAndSaveEntry(@PathVariable long id, @ModelAttribute("entryForm") Entry entry,
+			@RequestParam("pic") MultipartFile file, BindingResult bindingResult) throws IOException {
 
+		ModelAndView model = new ModelAndView();
+		
 		Entry entryObj = entryService.getEntry(id);
 		entry.setApproved(entryObj.isApproved());
-		
+
+		entryValidator.validate(entry, bindingResult);
+
+		if (entry.getTextMessage().length() == 0) {
+			entryValidator.validate(file, bindingResult);
+		}
+
+		if (bindingResult.hasErrors()) {
+			model.addObject("entryForm", entry);
+			model.addObject("newEntry", true);
+			model.setViewName("entryForm");
+			return model;
+		}
+
 		if (!file.isEmpty()) {
 			String fileName = fileStorageService.storeFile(file);
 			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
@@ -165,7 +199,7 @@ public class EntryController {
 		} else {
 			entry.setImageLocation("");
 		}
-		
+
 		entryService.saveOrUpdate(entry);
 
 		return new ModelAndView("redirect:/adminPanel");

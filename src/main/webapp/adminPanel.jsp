@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 
-		<div class="page-header">
+		<div class="page-header float-right" style="float:right">
 			<c:if test="${pageContext.request.userPrincipal.name != null}">
 				<form id="logoutForm" method="POST" action="${contextPath}/logout">
 					<input type="hidden" name="${_csrf.parameterName}"
@@ -24,7 +24,7 @@
 				</form>
 
 				<h2 class="custom-header">
-					Welcome ${pageContext.request.userPrincipal.name} | <a
+					Welcome, ${pageContext.request.userPrincipal.name} | <a
 						class="btn btn-info" role="button"
 						onclick="document.forms['logoutForm'].submit()">Logout</a>
 				</h2>
@@ -38,7 +38,7 @@
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th scope="row">Name</th>
+					<th scope="row">User</th>
 					<th scope="row">Text Message</th>
 					<th scope="row">Image</th>
 					<th scope="row">Approve</th>
@@ -51,7 +51,6 @@
 					<tr>
 						<td>${entry.user.username }</td>
 						<td>${entry.textMessage}</td>
-						<%-- <td>${entry.imageLocation }</td> --%>
 						<td><img id="imagePreview" alt="your image" src="${entry.imageLocation}" width="100" height="100" /></td>
 
 						<td><c:choose>
@@ -66,7 +65,7 @@
 										var="updateURL" />
 									<a class="btn btn-primary" href="${updateURL}" role="button">Approve</a>
 								</c:otherwise>
-							</c:choose>
+							</c:choose></td>
 						<td><spring:url value="/entry/updateEntry/${entry.id }"
 								var="deleteURL" /> <a class="btn btn-primary"
 							href="${deleteURL }" role="button">Update</a></td>

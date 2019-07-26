@@ -43,11 +43,11 @@ public class SpringMockitoApplicationTests {
 
 		Entry entry1 = new Entry();
 		entry1.setTextMessage("SampleMessage");
-		//entry1.setImageLocation("Sample Image Location");
+		entry1.setImageLocation("Sample Image Location");
 
 		Entry entry2 = new Entry();
 		entry2.setTextMessage("SampleMessage");
-		//entry2.setImageLocation("Sample Image Location");
+		entry2.setImageLocation("Sample Image Location");
 
 		when(mockedEntryRepository.findAll()).thenReturn(Stream.of(entry1, entry2).collect(Collectors.toList()));
 		assertEquals(2, mockedEntryService.getAllEntries().size());
@@ -80,7 +80,7 @@ public class SpringMockitoApplicationTests {
 
 		Entry entry = new Entry();
 		entry.setTextMessage("SampleMessage");
-		//entry.setImageLocation("Sample Image Location");
+		entry.setImageLocation("Sample Image Location");
 
 		mockedEntryService.saveOrUpdate(entry);
 		verify(mockedEntryRepository, times(1)).save(entry);

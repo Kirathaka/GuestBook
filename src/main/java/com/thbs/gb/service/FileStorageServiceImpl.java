@@ -57,7 +57,7 @@ public class FileStorageServiceImpl implements FileStorageService{
 			 BufferedImage image = ImageIO.read(f);
 		   int height = image.getHeight();
 		   int width = image.getWidth();
-		   if(width>300 || height>300) {
+		   if(width > AppConstants.FILE_DIMENSIONS_HEIGHT || height > AppConstants.FILE_DIMENSIONS_WIDTH) {
 			   if(f.exists())
 				   f.delete();
 			   throw new FileStorageException(AppConstants.INVALID_FILE_DIMENSIONS);

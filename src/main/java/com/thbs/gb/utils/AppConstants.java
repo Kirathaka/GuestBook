@@ -15,12 +15,15 @@ public class AppConstants {
 	public static final CharSequence INVALID_FILE_DELIMITER = "..";
 	//public static final String TEMP_DIR = "C://TMP//";
 	public static final String TEMP_DIR = "./uploads/tmp/";
+	public static final int FILE_DIMENSIONS_HEIGHT = 300;
+	public static final int FILE_DIMENSIONS_WIDTH = 300;
+	public static final int MAX_FILE_SIZE_IN_BYTES = 314572800;
 	public static final String INVALID_FILE_DIMENSIONS = "Invalid file dimensions. File dimension should not be more than 300 X 300";
 	public static final String INVALID_FILE_FORMAT = "Only PNG, JPEG and JPG images are allowed";
 	public static final String PNG_FILE_FORMAT = ".png";
 	public static final String JPEG_FILE_FORMAT = ".jpeg";
 	public static final String JPG_FILE_FORMAT = ".jpg";
-	public static final String SUCCESS_MESSAGE = "Your Comment has been added Successfully.";
-	public static final String MULTIPLE_ENTRY_ERROR_MESSAGE = "You have already submitted your comment. Please wait until the administrator deletes the previous one.";
+	public static final String SUCCESS_MESSAGE = "Your Feedback has been sent Successfully.";
+	public static final String MULTIPLE_ENTRY_ERROR_MESSAGE = "You have already submitted your Feedback. Please wait until the administrator deletes the previous one.";
 	
 }
