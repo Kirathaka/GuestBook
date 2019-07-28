@@ -74,19 +74,30 @@
 </head>
 <body>
 	<div class="container">
-		<div class="page-header" style="float: right">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<form id="logoutForm" method="POST" action="${contextPath}/logout">
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</form>
+		<div class="page-header">
+			<span style="float: left; margin-top: 10px;"> <c:if
+					test="${pageContext.request.userPrincipal.name eq 'admin'}">
+					<a class="btn btn-success" role="button"
+						href="${pageContext.request.contextPath}/adminPanel">Home</a>
+				</c:if> <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
+					<a class="btn btn-success" role="button"
+						href="${pageContext.request.contextPath}/entry">Home</a>
+				</c:if>
 
-				<h2 class="custom-header">
-					Welcome, ${pageContext.request.userPrincipal.name} | <a
-						class="btn btn-info" role="button"
-						onclick="document.forms['logoutForm'].submit()">Logout</a>
-				</h2>
-			</c:if>
+			</span> <span style="float: right"> <c:if
+					test="${pageContext.request.userPrincipal.name != null}">
+					<form id="logoutForm" method="POST" action="${contextPath}/logout">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</form>
+
+					<h2 class="custom-header">
+						Welcome, ${pageContext.request.userPrincipal.name} | <a
+							class="btn btn-danger" role="button"
+							onclick="document.forms['logoutForm'].submit()">Logout</a>
+					</h2>
+				</c:if>
+			</span>
 		</div>
 		<br /> <br /> <br />
 
@@ -113,7 +124,7 @@
 			<form:errors cssClass="error alert alert-warning"
 				delimiter="&lt;p/&gt;" style="bottom: 10px;" />
 
-			<h2>Please select the type of feedback</h2>
+			<h2>Please select the type of feedback:</h2>
 
 			<div class="form-group">
 				<label class="radio-inline"><input type="radio"
@@ -124,8 +135,8 @@
 			</div>
 
 			<div class="form-group textBlock ${error ? 'has-error' : ''}">
-				<form:input type="text" path="textMessage" class="form-control"
-					id="textInput" placeholder="Your Text goes here"></form:input>
+				<form:textarea path="textMessage" class="form-control"
+					id="textInput" placeholder="Your Text goes here"></form:textarea>
 				<small class="text-muted">Character length should be between
 					2 to 144.</small>
 				<form:errors path="textMessage"></form:errors>
@@ -139,8 +150,8 @@
 					id="imageInput" path="imageLocation" onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input> -->
 				<input type="file" class="form-control" id="imageInput" name="pic"
 					onchange="document.getElementById('imagePreview').src = window.URL.createObjectURL(this.files[0])"></input>
-				<small class="text-muted">Allowed formats: jpg/jpeg/png.
-					Allowd Dimensions: 300X300. Allowed Max size: 300MB</small>
+				<small class="text-muted">Allowed formats: jpg/jpeg/png,
+					Allowed Dimensions: 300X300, Allowed Max size: 300MB</small>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
 		</form:form>

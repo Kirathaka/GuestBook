@@ -19,19 +19,30 @@
 <body>
 	<div class="container">
 
-		<div class="page-header float-right" style="float: right">
-			<c:if test="${pageContext.request.userPrincipal.name != null}">
-				<form id="logoutForm" method="POST" action="${contextPath}/logout">
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
-				</form>
+		<div class="page-header">
+			<span style="float: left; margin-top: 10px;"> <c:if
+					test="${pageContext.request.userPrincipal.name eq 'admin'}">
+					<a class="btn btn-success" role="button"
+						href="${pageContext.request.contextPath}/adminPanel">Home</a>
+				</c:if> <c:if test="${pageContext.request.userPrincipal.name != 'admin'}">
+					<a class="btn btn-success" role="button"
+						href="${pageContext.request.contextPath}/entry">Home</a>
+				</c:if>
 
-				<h2 class="custom-header">
-					Welcome, ${pageContext.request.userPrincipal.name} | <a
-						class="btn btn-info" role="button"
-						onclick="document.forms['logoutForm'].submit()">Logout</a>
-				</h2>
-			</c:if>
+			</span> <span style="float: right"> <c:if
+					test="${pageContext.request.userPrincipal.name != null}">
+					<form id="logoutForm" method="POST" action="${contextPath}/logout">
+						<input type="hidden" name="${_csrf.parameterName}"
+							value="${_csrf.token}" />
+					</form>
+
+					<h2 class="custom-header">
+						Welcome, ${pageContext.request.userPrincipal.name} | <a
+							class="btn btn-danger" role="button"
+							onclick="document.forms['logoutForm'].submit()">Logout</a>
+					</h2>
+				</c:if>
+			</span>
 		</div>
 		<br /> <br /> <br />
 
